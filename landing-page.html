@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ultimate Digital Income Masterclass</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-dark: #8B6914;
+    --black: #0A0A0A;
+    --dark: #111111;
+    --card-bg: #161616;
+    --text: #F0E8D8;
+    --text-muted: #9A8C72;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--black);
+    color: var(--text);
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* === GRAIN OVERLAY === */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.5;
+  }
+
+  /* === BORDER FRAME === */
+  .page-frame {
+    min-height: 100vh;
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    margin: 8px;
+    position: relative;
+  }
+  .page-frame::before, .page-frame::after {
+    content: '◆';
+    position: absolute;
+    color: var(--gold);
+    font-size: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .page-frame::before { top: 12px; }
+  .page-frame::after { bottom: 12px; }
+
+  /* === CORNER DIAMONDS === */
+  .corner {
+    position: fixed;
+    width: 20px; height: 20px;
+    border-color: var(--gold-dark);
+    border-style: solid;
+    z-index: 10;
+    opacity: 0.6;
+  }
+  .corner.tl { top: 12px; left: 12px; border-width: 1px 0 0 1px; }
+  .corner.tr { top: 12px; right: 12px; border-width: 1px 1px 0 0; }
+  .corner.bl { bottom: 12px; left: 12px; border-width: 0 0 1px 1px; }
+  .corner.br { bottom: 12px; right: 12px; border-width: 0 1px 1px 0; }
+
+  /* === HERO === */
+  .hero {
+    text-align: center;
+    padding: 60px 24px 40px;
+    position: relative;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 3px;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: var(--gold-dark);
+  }
+
+  .avatar-ring {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    margin: 0 auto 24px;
+    border: 2px solid var(--gold);
+    padding: 4px;
+    position: relative;
+    animation: pulse-ring 3s ease-in-out infinite;
+  }
+  .avatar-ring img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    filter: grayscale(20%) contrast(1.1);
+  }
+
+  @keyframes pulse-ring {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.3); }
+    50% { box-shadow: 0 0 0 8px rgba(201, 168, 76, 0); }
+  }
+
+  .presented-by {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    font-weight: 300;
+  }
+
+  .presenter-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    letter-spacing: 6px;
+    color: var(--gold-light);
+    margin-bottom: 24px;
+    font-weight: 700;
+  }
+
+  .gold-rule {
+    width: 60px;
+    height: 1px;
+    background: var(--gold-dark);
+    margin: 0 auto 20px;
+  }
+
+  .proudly-presents {
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+    font-weight: 300;
+  }
+
+  .main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 10vw, 56px);
+    line-height: 1.1;
+    margin-bottom: 16px;
+    color: var(--text);
+    font-weight: 900;
+  }
+
+  .main-title span {
+    color: var(--gold);
+    display: block;
+  }
+
+  .tagline {
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--text-muted);
+    margin-bottom: 0;
+    font-weight: 400;
+  }
+
+  /* === COURSES === */
+  .courses-section {
+    padding: 0 16px 40px;
+  }
+
+  .course-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(201, 168, 76, 0.15);
+    border-radius: 2px;
+    padding: 28px 24px;
+    margin-bottom: 12px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s ease, transform 0.2s ease;
+    animation: fadeUp 0.6s ease both;
+  }
+  .course-card:nth-child(1) { animation-delay: 0.1s; }
+  .course-card:nth-child(2) { animation-delay: 0.2s; }
+  .course-card:nth-child(3) { animation-delay: 0.3s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .course-card:active { transform: scale(0.99); }
+
+  .course-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0.5;
+  }
+
+  .course-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    color: rgba(201, 168, 76, 0.12);
+    position: absolute;
+    top: 10px; right: 20px;
+    line-height: 1;
+    font-weight: 900;
+    pointer-events: none;
+  }
+
+  .course-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--gold-light);
+    margin-bottom: 6px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .course-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+
+  .course-list {
+    list-style: none;
+  }
+  .course-list li {
+    font-size: 12px;
+    color: var(--text);
+    padding: 5px 0;
+    padding-left: 18px;
+    position: relative;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .course-list li:last-child { border-bottom: none; }
+  .course-list li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 6px;
+    top: 7px;
+  }
+
+  /* === STATS === */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(201, 168, 76, 0.15);
+    margin: 0 16px 40px;
+    border: 1px solid rgba(201, 168, 76, 0.15);
+  }
+
+  .stat-item {
+    background: var(--card-bg);
+    text-align: center;
+    padding: 24px 12px;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    color: var(--gold-light);
+    font-weight: 700;
+    display: block;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  /* === PRICING === */
+  .pricing-section {
+    margin: 0 16px 40px;
+    background: var(--card-bg);
+    border: 1px solid rgba(201, 168, 76, 0.25);
+    padding: 32px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pricing-section::before {
+    content: '★ EXCLUSIVE OFFER ★';
+    display: block;
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .old-price {
+    font-size: 14px;
+    color: var(--text-muted);
+    text-decoration: line-through;
+    margin-bottom: 4px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+  }
+
+  .new-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px;
+    color: var(--gold-light);
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .price-includes {
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+  }
+
+  /* === CTA BUTTON === */
+  .cta-btn {
+    display: block;
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    padding: 18px 32px;
+    cursor: pointer;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.05));
+    transform: translateX(-100%);
+    transition: transform 0.4s ease;
+  }
+
+  .cta-btn:hover::before,
+  .cta-btn:active::before {
+    transform: translateX(0);
+  }
+
+  .cta-btn:active {
+    transform: scale(0.98);
+  }
+
+  /* === FLOATING CTA === */
+  .floating-cta {
+    position: fixed;
+    bottom: 20px;
+    left: 16px;
+    right: 16px;
+    z-index: 100;
+    animation: slideUp 0.8s 1s ease both;
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .floating-cta a {
+    display: block;
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light));
+    color: var(--black);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    padding: 18px 32px;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 1px;
+    box-shadow: 0 8px 32px rgba(201, 168, 76, 0.4);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .floating-cta a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.1);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .floating-cta a:active::after { opacity: 1; }
+
+  /* === GUARANTEES === */
+  .guarantees {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px 24px;
+    padding: 0 20px 24px;
+    margin-bottom: 80px;
+  }
+
+  .guarantee-item {
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .guarantee-item::before {
+    content: '◆';
+    color: var(--gold);
+    font-size: 6px;
+  }
+
+  /* === SOCIALS === */
+  .socials-bar {
+    padding: 20px 16px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    border-top: 1px solid rgba(201, 168, 76, 0.1);
+  }
+
+  .find-us {
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--text-muted);
+  }
+
+  .social-links {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .social-link {
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    border: 1px solid rgba(201, 168, 76, 0.3);
+    padding: 5px 10px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .social-link:hover { background: rgba(201,168,76,0.1); }
+
+  /* === SCROLL REVEAL === */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="corner tl"></div>
+<div class="corner tr"></div>
+<div class="corner bl"></div>
+<div class="corner br"></div>
+
+<div class="page-frame">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="divider">◆</div>
+
+    <div class="avatar-ring">
+      <!-- Placeholder circle since we can't embed the actual photo -->
+      <svg width="100%" height="100%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="50" fill="#1a1a1a"/>
+        <circle cx="50" cy="38" r="18" fill="#333"/>
+        <ellipse cx="50" cy="80" rx="28" ry="22" fill="#333"/>
+      </svg>
+    </div>
+
+    <p class="presented-by">PRESENTED BY</p>
+    <h2 class="presenter-name">CHINEDU EMMANUEL</h2>
+
+    <div class="gold-rule"></div>
+    <p class="proudly-presents">PROUDLY PRESENTS</p>
+
+    <h1 class="main-title">
+      The Ultimate
+      <span>Digital Income</span>
+      Masterclass
+    </h1>
+
+    <p class="tagline">THREE COURSES &nbsp;·&nbsp; ONE POWERFUL TRANSFORMATION</p>
+  </section>
+
+  <!-- COURSES -->
+  <section class="courses-section">
+
+    <div class="course-card">
+      <span class="course-num">01</span>
+      <h3 class="course-title">Importation Business Mastery</h3>
+      <p class="course-subtitle">Source from China, sell in Nigeria — massive profits await</p>
+      <ul class="course-list">
+        <li>Alibaba & 1688 supplier secrets</li>
+        <li>Shipping, customs & clearing</li>
+        <li>Pricing & profit formula</li>
+        <li>Mini & bulk importation</li>
+        <li>Scale to 6-figures fast</li>
+      </ul>
+    </div>
+
+    <div class="course-card">
+      <span class="course-num">02</span>
+      <h3 class="course-title">Jumia Selling Mastery</h3>
+      <p class="course-subtitle">Dominate Nigeria's #1 marketplace and earn daily</p>
+      <ul class="course-list">
+        <li>Seller account setup & ranking</li>
+        <li>Winning product listings</li>
+        <li>Jumia Ads & promotions</li>
+        <li>Order & fulfilment system</li>
+        <li>5-star reviews strategy</li>
+      </ul>
+    </div>
+
+    <div class="course-card">
+      <span class="course-num">03</span>
+      <h3 class="course-title">Facebook & Instagram Digital</h3>
+      <p class="course-subtitle">Run ads that sell on autopilot around the clock</p>
+      <ul class="course-list">
+        <li>FB & IG ads from zero</li>
+        <li>Perfect audience targeting</li>
+        <li>Content that converts</li>
+        <li>WhatsApp sales funnels</li>
+        <li>Retargeting & scaling</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-grid reveal">
+    <div class="stat-item">
+      <span class="stat-num">500+</span>
+      <span class="stat-label">STUDENTS</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">30+</span>
+      <span class="stat-label">VIDEO LESSONS</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">24/7</span>
+      <span class="stat-label">SUPPORT</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">∞</span>
+      <span class="stat-label">LIFETIME ACCESS</span>
+    </div>
+  </div>
+
+  <!-- PRICING -->
+  <div class="pricing-section reveal">
+    <p class="old-price">₦45,000 — Regular Price</p>
+    <div class="new-price">₦5,000</div>
+    <p class="price-includes">ALL 3 COURSES &nbsp;·&nbsp; CERTIFICATE &nbsp;·&nbsp; BONUS RESOURCES</p>
+    <a href="https://nestuge.com/sx33aeumm" class="cta-btn" target="_blank" rel="noopener">
+      ENROLL NOW
+    </a>
+  </div>
+
+  <!-- GUARANTEES -->
+  <div class="guarantees reveal">
+    <span class="guarantee-item">Lifetime Access</span>
+    <span class="guarantee-item">Certificate of Completion</span>
+    <span class="guarantee-item">7-Day Money-Back Guarantee</span>
+    <span class="guarantee-item">WhatsApp Community</span>
+  </div>
+
+  <!-- SOCIALS -->
+  <div class="socials-bar reveal">
+    <span class="find-us">FIND US ON</span>
+    <div class="social-links">
+      <a href="#" class="social-link">JUMIA</a>
+      <a href="#" class="social-link">FACEBOOK</a>
+      <a href="#" class="social-link">INSTAGRAM</a>
+      <a href="#" class="social-link">WHATSAPP</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- FLOATING CTA -->
+<div class="floating-cta">
+  <a href="https://nestuge.com/sx33aeumm" target="_blank" rel="noopener">
+    ENROLL NOW — ₦5,000 ONLY
+  </a>
+</div>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Hide floating CTA when pricing section is visible
+  const pricingSection = document.querySelector('.pricing-section');
+  const floatingCta = document.querySelector('.floating-cta');
+  const ctaObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      floatingCta.style.opacity = e.isIntersecting ? '0' : '1';
+      floatingCta.style.pointerEvents = e.isIntersecting ? 'none' : 'auto';
+    });
+  }, { threshold: 0.5 });
+  ctaObserver.observe(pricingSection);
+</script>
+</body>
+</html>
